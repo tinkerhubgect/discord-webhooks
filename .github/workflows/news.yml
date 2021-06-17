@@ -4,10 +4,8 @@
 name: NEWS webhook
 
 on:
-  push:
-    branch: main
   schedule:
-    - cron: "30 13 * * *"
+    - cron: "15 14 * * *"
 
 jobs:
   build:
