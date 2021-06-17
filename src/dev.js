@@ -1,7 +1,9 @@
+//require("dotenv").config();
 const { Webhook, MessageBuilder } = require("discord-webhook-node");
 const hook = new Webhook(process.env.DEV_HOOK);
 const axios = require("axios");
 
+//set limit
 const limit = 2;
 
 const fetchPosts = async () => {
@@ -10,7 +12,7 @@ const fetchPosts = async () => {
     let blogs = (await axios.get("https://dev.to/api/articles?top=1")).data;
 
     //loop to send embed messages
-    for (let i = 0; i < limit; i++) {
+    for (let i = 0; (i < limit) & (i < blogs.length); i++) {
       let blog = blogs[i];
 
       //generate embed message
@@ -28,7 +30,7 @@ const fetchPosts = async () => {
       await hook.send(embed);
     }
   } catch (e) {
-    console.log(e.name);
+    console.log(e);
   }
 };
 
