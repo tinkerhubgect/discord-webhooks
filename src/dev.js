@@ -15,12 +15,18 @@ const fetchPosts = async () => {
     for (let i = 0; (i < limit) & (i < blogs.length); i++) {
       let blog = blogs[i];
 
+      //formatting tags
+      let tags = blog.tags;
+      tags = tags.split(",");
+      tags = tags.map((tag) => `#**${tag.trim()}**`);
+      tags = tags.join(" ");
+
       //generate embed message
       let embed = await new MessageBuilder()
         .setTitle(blog.title)
         .setURL(blog.url)
         .setColor("#00b0f4")
-        .setDescription(`${blog.description} \n\n:point_right: ${blog.tags} \n`)
+        .setDescription(`${blog.description} \n\n${tags} \n`)
         .setImage(blog.social_image)
         .setFooter(
           `${blog.public_reactions_count}  ❤️ \t ${blog.comments_count}  💬`
