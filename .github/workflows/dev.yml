@@ -4,8 +4,6 @@
 name: DEV webhook
 
 on:
-  push:
-    branch: main
   schedule:
     - cron: "30 13 * * *"
 
