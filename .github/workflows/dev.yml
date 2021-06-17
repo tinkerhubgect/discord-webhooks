@@ -5,9 +5,9 @@ name: DEV webhook
 
 on:
   push:
-    branches: [main]
+    branch: main
   schedule:
-    - cron: "00 8 * * *"
+    - cron: "30 1 * * *"
 
 jobs:
   build:
@@ -27,6 +27,6 @@ jobs:
       - name: install dependancies
         run: npm install
       - name: run script
-        run: node dev.js
+        run: node ./src/dev.js
         env:
           DEV_HOOK: ${{ secrets.DEV_HOOK }}
