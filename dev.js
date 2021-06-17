@@ -1,4 +1,3 @@
-require("dotenv").config();
 const { Webhook, MessageBuilder } = require("discord-webhook-node");
 const hook = new Webhook(process.env.DEV_HOOK);
 const axios = require("axios");

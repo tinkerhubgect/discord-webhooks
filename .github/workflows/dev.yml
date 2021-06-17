@@ -5,14 +5,12 @@ name: DEV webhook
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   schedule:
-   - cron: "00 8 * * *"
-
+    - cron: "00 8 * * *"
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     strategy:
@@ -21,14 +19,14 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2
-      with:
-        node-version: ${{ matrix.node-version }}
-    - name: install dependancies
-      run: npm ci
-    - name: run script
-      run: node dev.js
-      env: 
-        DEV_HOOK: ${{ secrets.DEV_HOOK }}
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: install dependancies
+        run: npm install
+      - name: run script
+        run: node dev.js
+        env:
+          DEV_HOOK: ${{ secrets.DEV_HOOK }}
