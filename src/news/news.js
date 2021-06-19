@@ -2,9 +2,10 @@
 const { Webhook, MessageBuilder } = require("discord-webhook-node");
 const hook = new Webhook(process.env.NEWS_HOOK);
 const axios = require("axios");
+const sources = require("./sources");
 
 //set limit
-const limit = 7;
+let limit = 7;
 
 const fetchPosts = async () => {
   try {
@@ -37,6 +38,13 @@ const fetchPosts = async () => {
     //loop to add top news to embed
     for (let i = 0; (i < limit) & (i < blogs.length); i++) {
       let blog = blogs[i];
+
+      //check if source is in our list
+      if (!sources.includes(blog.source.title)) {
+        limit++;
+        continue;
+      }
+
       link = `${count} : ${blog.title} [(Read More)](${blog.link})`;
 
       //if field limits are exceeded
@@ -58,3 +66,4 @@ const fetchPosts = async () => {
 };
 
 fetchPosts();
+//r

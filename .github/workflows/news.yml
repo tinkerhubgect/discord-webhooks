@@ -25,7 +25,7 @@ jobs:
       - name: Install dependancies
         run: npm install
       - name: Run script
-        run: node ./src/news.js
+        run: node ./src/news/news.js
         env:
           NEWS_HOOK: ${{ secrets.NEWS_HOOK }}
           NEWS_KEY: ${{ secrets.NEWS_KEY }}
