@@ -11,9 +11,15 @@ const fetchPosts = async () => {
     //fetch from api
     let blogs = (await axios.get("https://dev.to/api/articles?top=1")).data;
 
+    //generate 2 random numbers to select posts
+    let random = new Set();
+    let range = blogs.length;
+    while (random.size < limit) random.add(Math.floor(Math.random() * range));
+    random = [...random];
+
     //loop to send embed messages
     for (let i = 0; (i < limit) & (i < blogs.length); i++) {
-      let blog = blogs[i];
+      let blog = blogs[random[i]];
 
       //formatting tags
       let tags = blog.tags;
