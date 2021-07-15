@@ -13,7 +13,7 @@ const fetchPosts = async () => {
 
     //generate 2 random numbers to select posts
     let random = new Set();
-    let range = blogs.length;
+    let range = blogs.length / 2;
     while (random.size < limit) random.add(Math.floor(Math.random() * range));
     random = [...random];
 

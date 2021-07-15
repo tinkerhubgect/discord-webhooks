@@ -1,5 +1,4 @@
 const sources = [
-  "The Indian Express",
   "Moneycontrol",
   "The Verge",
   "Engadget",
